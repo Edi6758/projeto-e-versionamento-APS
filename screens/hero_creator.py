@@ -1,25 +1,26 @@
-from json import load
 from models.hero import Hero
-from tkinter import StringVar, Text, WORD, END
+from tkinter import StringVar, Text, WORD, END, Frame
 from tkinter.ttk import Label, Combobox, Button
 from random import choice
 
 
 class HeroCreatorScreen:
-    def __init__(self, manager):
+    def __init__(self, manager, hero_data_assets):
         self.__manager = manager
         self.__generate_button = None
         self.__race_vars = []
         self.__class_vars = []
         self.__element_vars = []
         self.__hero_text = None
-        self.__stats = {'titles': load(open('assets/titles.json', 'r')),
-                        'names': load(open('assets/names.json', 'r')),
-                        'stats': load(open('assets/stats.json', 'r'))}
+        self.__stats = hero_data_assets
+        self.__frame = Frame(self.manager.window)
+        self.__frame.grid(row=0, column=0, sticky="nsew")
 
     def open(self):
-        self.manager.window.title("Mount your team")
         self.create_widgets()
+        self.frame.tkraise()
+        self.manager.window.geometry("700x400")
+        self.manager.window.resizable(False, False)
 
     def create_widgets(self):
         for i in range(3):
@@ -31,7 +32,7 @@ class HeroCreatorScreen:
             self.__class_vars.append(class_var)
             self.__element_vars.append(element_var)
 
-            Label(self.manager.window, text=f"Hero {i + 1}").grid(row=i, column=0, pady=10)
+            # Label(self.manager.window, text=f"Hero {i + 1 }").grid(row=i, column=0, pady=10)
 
             race_combobox = Combobox(self.manager.window, textvariable=race_var,
                                      values=list(self.__stats['stats']['races'].keys()), state="readonly")
@@ -48,7 +49,7 @@ class HeroCreatorScreen:
             element_combobox.grid(row=i, column=3)
             element_combobox.current(0)
 
-        self.__generate_button = Button(self.manager.window, text="Generate Heroes", command=self.generate_heroes)
+        self.__generate_button = Button(self.manager.window, text="Criar time", command=self.generate_heroes)
         self.__generate_button.grid(row=3, column=0, columnspan=4, pady=20)
 
         self.__hero_text = Text(self.manager.window, wrap=WORD, width=80, height=10, bg='gray15', fg='white')
@@ -87,7 +88,8 @@ class HeroCreatorScreen:
             build = (self.__race_vars[i].get(), self.__class_vars[i].get(), self.__element_vars[i].get())
             hero = self.create_hero(build)
             heroes.append(hero)
-            self.__hero_text.insert(END, f'Hero {i + 1}:\n{hero.full_name}\n{hero.build}\n\n')
+            self.__hero_text.insert(END, f'{hero.full_name}\nhp {hero.max_health}; dmg {hero.damage}; '
+                                         f'agl {hero.agility}; mana {hero.max_mana};\n\n')
         return heroes
 
     # Getters
@@ -115,6 +117,10 @@ class HeroCreatorScreen:
     def hero_text(self):
         return self.__hero_text
 
+    @property
+    def frame(self):
+        return self.__frame
+
     # Setters
     @race_vars.setter
     def race_vars(self, race_vars):
@@ -135,3 +141,7 @@ class HeroCreatorScreen:
     @hero_text.setter
     def hero_text(self, hero_text):
         self.__hero_text = hero_text
+
+    @frame.setter
+    def frame(self, frame):
+        self.__frame = frame
