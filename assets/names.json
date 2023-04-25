@@ -1,0 +1,42 @@
+{
+  "Human": [
+    "Lucas Blackwood",
+    "Amelia Windcrest",
+    "Ethan Stormbourne",
+    "Charlotte Fairweather",
+    "Oliver Ironfield",
+    "Sophia Lightfoot"
+  ],
+  "Elf": [
+    "Lariel Silverleaf",
+    "Thalion Moonshadow",
+    "Arinithil Starwhisper",
+    "Celebriän Everglade",
+    "Elindir Dawnstrider",
+    "Aerendyl Sunweaver"
+  ],
+  "Dwarf": [
+    "Bardin Ironhammer",
+    "Kelda Stoneforge",
+    "Dagrim Thunderaxe",
+    "Hilda Deepdelver",
+    "Thorgar Frostbeard",
+    "Yrsa Hammerfall"
+  ],
+  "Orc": [
+    "Gromash Bonecrusher",
+    "Magra Bloodfist",
+    "Korak Ironjaw",
+    "Ugrah Stormchaser",
+    "Dranok Warbringer",
+    "Gurka Skullsplitter"
+  ],
+  "Gnome": [
+    "Fizzlewick Gearspark",
+    "Trixibelle Widgetwrench",
+    "Pippin Quillhopper",
+    "Jasmine Steamwhistle",
+    "Riggle Fizzlebot",
+    "Mimsy Cogswoggle"
+  ]
+}

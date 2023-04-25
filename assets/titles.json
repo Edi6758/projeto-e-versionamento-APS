@@ -1,0 +1,112 @@
+{
+  "Flame": {
+    "Warrior": [
+      "Blazing Champion of the Eternal Flame",
+      "Infernal Protector of the Scorching Heat"
+    ],
+    "Fighter": [
+      "Inferno Brawler of the Dancing Flames",
+      "Fire Fist of the Searing Battle"
+    ],
+    "Assassin": [
+      "Ember Stalker of the Whispering Fire",
+      "Cinder Striker of the Smoldering Shadows"
+    ],
+    "Arcanist": [
+      "Fire Magus of the Blistering Inferno",
+      "Pyromancer of the Raging Conflagration"
+    ],
+    "Ranger": [
+      "Flame Warden of the Burning Wilds",
+      "Wildfire Sentinel of the Ashen Plains"
+    ]
+  },
+  "Sea": {
+    "Warrior": [
+      "Tidal Defender of the Boundless Sea",
+      "Ocean Champion of the Vast Depths"
+    ],
+    "Fighter": [
+      "Wave Breaker of the Raging Depths",
+      "Surging Fist of the Roaring Currents"
+    ],
+    "Assassin": [
+      "Abyssal Shadow of the Silent Tides",
+      "Deepwater Stalker of the Unseen Depths"
+    ],
+    "Arcanist": [
+      "Aqua Sorcerer of the Endless Ocean",
+      "Tidecaller of the Ever-Changing Waves"
+    ],
+    "Ranger": [
+      "Marine Guardian of the Coastal Reaches",
+      "Reef Warden of the Coral Labyrinths"
+    ]
+  },
+  "Terra": {
+    "Warrior": [
+      "Earth Warden of the Unyielding Stone",
+      "Stone Guardian of the Impenetrable Fortress"
+    ],
+    "Fighter": [
+      "Mountain Breaker of the Trembling Ground",
+      "Landslide Brawler of the Rugged Cliffs"
+    ],
+    "Assassin": [
+      "Rock Whisperer of the Hidden Caverns",
+      "Tunnel Stalker of the Subterranean Labyrinth"
+    ],
+    "Arcanist": [
+      "Geomancer of the Resilient Earth",
+      "Terrashaper of the Fertile Plains"
+    ],
+    "Ranger": [
+      "Terran Keeper of the Rugged Highlands",
+      "Hill Sentinel of the Rolling Expanse"
+    ]
+  },
+  "Nature": {
+    "Warrior": [
+      "Nature's Protector of the Enchanted Grove",
+      "Verdant Guardian of the Untamed Wilds"
+    ],
+    "Fighter": [
+      "Verdant Brawler of the Untamed Wilds",
+      "Thorned Fist of the Blossoming Struggle"
+    ],
+    "Assassin": [
+      "Shadow of the Whispering Leaves",
+      "Silent Striker of the Twisting Vines"
+    ],
+    "Arcanist": [
+      "Druidic Sage of the Flourishing Forest",
+      "Nature's Weaver of the Rejuvenating Glade"
+    ],
+    "Ranger": [
+      "Woodland Guardian of the Lush Canopy",
+      "Forest Warden of the Emerald Depths"
+    ]
+  },
+  "Electric": {
+    "Warrior": [
+      "Storm Warden of the Raging Lightning",
+      "Thundering Champion of the Electric Vortex"
+    ],
+    "Fighter": [
+      "Shock Brawler of the Crackling Thunder",
+      "Lightning Fist of the Charged Conflict"
+    ],
+    "Assassin": [
+      "Volt Stalker of the Silent Sparks",
+      "Electro Shadow of the Whispering Bolts"
+    ],
+    "Arcanist": [
+      "Electromancer of the Stormy Skies",
+      "Lightning Sorcerer of the Arcing Tempest"
+    ],
+    "Ranger": [
+      "Lightning Keeper of the Electric Frontier",
+      "Storm Sentinel of the Thundering Expanse"
+    ]
+  }
+}
