@@ -2,7 +2,7 @@ from ttkthemes import ThemedTk
 from tkinter import messagebox, simpledialog
 from screens.hero_creator import HeroCreatorScreen
 from screens.main_menu import MainMenuScreen
-from models.loading import Loading
+from models.graphics_manager import GraphicsManager
 
 
 class WindowManager:
@@ -11,10 +11,10 @@ class WindowManager:
         self.__window = ThemedTk(theme="equilux")
         self.window.geometry('0x0')
         self.window.overrideredirect(True)
-        self.__loading = Loading(self)
-        self.loading.load()
+        self.__graphics_manager = GraphicsManager(self)
         self.__main_menu = MainMenuScreen(self)
-        self.__hero_creator = HeroCreatorScreen(self, hero_data_assets=self.loading.heroes_data_assets)
+        self.graphics_manager.load()
+        self.__hero_creator = HeroCreatorScreen(self, hero_data_assets=self.graphics_manager.heroes_data_assets)
         self.__battle = None
         self.__main_menu.open()
 
@@ -33,8 +33,8 @@ class WindowManager:
         return self.__window
 
     @property
-    def loading(self):
-        return self.__loading
+    def graphics_manager(self):
+        return self.__graphics_manager
 
     @property
     def hero_creator(self):
