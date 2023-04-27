@@ -1,6 +1,6 @@
 from models.hero import Hero
 from tkinter import StringVar, Text, WORD, END, Frame
-from tkinter.ttk import Label, Combobox, Button
+from tkinter.ttk import Combobox, Button
 from random import choice
 
 
@@ -32,8 +32,6 @@ class HeroCreatorScreen:
             self.__class_vars.append(class_var)
             self.__element_vars.append(element_var)
 
-            # Label(self.manager.window, text=f"Hero {i + 1 }").grid(row=i, column=0, pady=10)
-
             race_combobox = Combobox(self.manager.window, textvariable=race_var,
                                      values=list(self.__stats['stats']['races'].keys()), state="readonly")
             race_combobox.grid(row=i, column=1)
@@ -49,7 +47,7 @@ class HeroCreatorScreen:
             element_combobox.grid(row=i, column=3)
             element_combobox.current(0)
 
-        self.__generate_button = Button(self.manager.window, text="Criar time", command=self.generate_heroes)
+        self.__generate_button = Button(self.manager.window, text="Criar time", command=self.establish_team)
         self.__generate_button.grid(row=3, column=0, columnspan=4, pady=20)
 
         self.__hero_text = Text(self.manager.window, wrap=WORD, width=80, height=10, bg='gray15', fg='white')
@@ -82,17 +80,16 @@ class HeroCreatorScreen:
         skills = {'basic attack': basic_attack, 'power attack': power_attack, 'special attack': special_attack}
         return Hero(title=title, damage=damage, health=health, agility=agility, mana=mana, skills=skills, build=build)
 
-    def generate_heroes(self):
-        heroes = []
+    def establish_team(self):
+        heroes = {}
         for i in range(3):
             build = (self.__race_vars[i].get(), self.__class_vars[i].get(), self.__element_vars[i].get())
             hero = self.create_hero(build)
-            heroes.append(hero)
+            heroes[f'Hero {i + 1}'] = hero
             self.__hero_text.insert(END, f'{hero.full_name}\nhp {hero.max_health}; dmg {hero.damage}; '
                                          f'agl {hero.agility}; mana {hero.max_mana};\n\n')
-        return heroes
+        self.manager.player_interface.battle_manager.team = heroes
 
-    # Getters
     @property
     def manager(self):
         return self.__manager
@@ -121,7 +118,6 @@ class HeroCreatorScreen:
     def frame(self):
         return self.__frame
 
-    # Setters
     @race_vars.setter
     def race_vars(self, race_vars):
         self.__race_vars = race_vars

@@ -24,6 +24,10 @@ class WindowManager:
     def input_popup(self, title: str, message: str):
         return simpledialog.askstring(title=title, prompt=message)
 
+    def swap_to_hero_creator(self):
+        self.main_menu.frame.grid_remove()
+        self.hero_creator.open()
+
     @property
     def player_interface(self):
         return self.__player_interface
@@ -39,3 +43,7 @@ class WindowManager:
     @property
     def hero_creator(self):
         return self.__hero_creator
+
+    @property
+    def main_menu(self):
+        return self.__main_menu

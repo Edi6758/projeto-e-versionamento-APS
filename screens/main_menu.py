@@ -17,30 +17,24 @@ class MainMenuScreen:
         self.button()
 
     def button(self):
-        # Create a centralized button
-        button = Button(self.frame, text="Procurar partida", command=self.swap_to_hero_creation)
+        button = Button(self.frame, text="Procurar partida",
+                        command=self.manager.player_interface.server_manager.start_match)
         button.grid(row=1, column=0)
 
-    def swap_to_hero_creation(self):
-        self.frame.grid_remove()
-        self.manager.hero_creator.open()
-
     def title(self):
-        # Create a canvas to draw the title
         canvas = Canvas(self.frame, width=500, height=200, bg="white")
         canvas.grid(row=0, column=0)
 
-        # Draw the title
         colors = ["blue", "orange", "green", "brown", "yellow"]
         title = "Battle Element"
-        x, y = 114, 100  # Center coordinates
+        x, y = 114, 100
 
         for i, char in enumerate(title):
             color = colors[i % len(colors)]
             text_item = canvas.create_text(x, y, anchor=W, text=char, font=("Helvetica", 24, "bold"), fill=color)
             bbox = canvas.bbox(text_item)
             char_width = bbox[2] - bbox[0]
-            x += char_width  # Move x coordinate to the right for the next character
+            x += char_width
 
     @property
     def manager(self):
