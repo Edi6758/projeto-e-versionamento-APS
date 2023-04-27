@@ -1,3 +1,4 @@
+from time import sleep
 
 
 class ServerManager:
@@ -12,20 +13,21 @@ class ServerManager:
         while disconnected:
             message = self.player_interface.dog_server_interface.initialize(player_name, self.player_interface)
             print(message)
-            if message != 'Conectado a Dog Server':
+            if message == 'Conectado a Dog Server':
                 break
         self.player_interface.window_manager.popup(message=message)
 
     def start_match(self):
-        opponent_unavailable = True
-        while opponent_unavailable:
-            start_status = self.player_interface.dog_server_interface.start_match(2)
-            message = start_status.get_message()
-            print(message)
-            if message == 'Partida iniciada':
-                break
-            print('tentando novamente')
-        self.player_interface.window_manager.swap_to_hero_creator()
+        start_status = self.player_interface.dog_server_interface.start_match(2)
+        message = start_status.get_message()
+        print(message)
+        if start_status.get_code == 2:
+            self.player_interface.window_manager.swap_to_hero_creator()
+            return
+        else:
+            print('tentando novamente em 3 segundos')
+            self.player_interface.window_manager.window.after(3000, self.start_match)
+
 
     @property
     def player_interface(self):

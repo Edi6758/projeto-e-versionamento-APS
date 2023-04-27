@@ -17,7 +17,7 @@ class PlayerInterface(DogPlayerInterface):
     def receive_start(self, start_status):
         message = start_status.get_message()
         print(message)
-        if message == 'Partida iniciada':
+        if start_status.get_code == 2:
             self.window_manager.swap_to_hero_creator()
 
     @property
