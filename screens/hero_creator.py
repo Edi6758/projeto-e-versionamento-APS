@@ -14,13 +14,13 @@ class HeroCreatorScreen:
         self.__hero_text = None
         self.__stats = hero_data_assets
         self.__frame = Frame(self.manager.window)
-        self.__frame.grid(row=0, column=0, sticky="nsew")
 
     def open(self):
-        self.create_widgets()
-        self.frame.tkraise()
         self.manager.window.geometry("700x400")
         self.manager.window.resizable(False, False)
+        self.frame.grid(row=0, column=0, sticky="nsew")
+        self.frame.tkraise()
+        self.create_widgets()
 
     def create_widgets(self):
         for i in range(3):
@@ -32,25 +32,25 @@ class HeroCreatorScreen:
             self.__class_vars.append(class_var)
             self.__element_vars.append(element_var)
 
-            race_combobox = Combobox(self.manager.window, textvariable=race_var,
+            race_combobox = Combobox(self.frame, textvariable=race_var,
                                      values=list(self.__stats['stats']['races'].keys()), state="readonly")
             race_combobox.grid(row=i, column=1)
             race_combobox.current(0)
 
-            class_combobox = Combobox(self.manager.window, textvariable=class_var,
+            class_combobox = Combobox(self.frame, textvariable=class_var,
                                       values=list(self.__stats['stats']['classes'].keys()), state="readonly")
             class_combobox.grid(row=i, column=2)
             class_combobox.current(0)
 
-            element_combobox = Combobox(self.manager.window, textvariable=element_var,
+            element_combobox = Combobox(self.frame, textvariable=element_var,
                                         values=list(self.__stats['stats']['elements'].keys()), state="readonly")
             element_combobox.grid(row=i, column=3)
             element_combobox.current(0)
 
-        self.__generate_button = Button(self.manager.window, text="Criar time", command=self.establish_team)
+        self.__generate_button = Button(self.frame, text="Criar time", command=self.establish_team)
         self.__generate_button.grid(row=3, column=0, columnspan=4, pady=20)
 
-        self.__hero_text = Text(self.manager.window, wrap=WORD, width=80, height=10, bg='gray15', fg='white')
+        self.__hero_text = Text(self.frame, wrap=WORD, width=80, height=10, bg='gray15', fg='white')
         self.__hero_text.grid(row=4, column=0, columnspan=4, padx=10, pady=10)
 
     def create_hero(self, build: tuple):
@@ -82,13 +82,19 @@ class HeroCreatorScreen:
 
     def establish_team(self):
         heroes = {}
+        builds = []
         for i in range(3):
             build = (self.__race_vars[i].get(), self.__class_vars[i].get(), self.__element_vars[i].get())
+            builds.append(build)
             hero = self.create_hero(build)
             heroes[f'Hero {i + 1}'] = hero
-            self.__hero_text.insert(END, f'{hero.full_name}\nhp {hero.max_health}; dmg {hero.damage}; '
-                                         f'agl {hero.agility}; mana {hero.max_mana};\n\n')
+            self.display_team(hero=hero)
         self.manager.player_interface.battle_manager.team = heroes
+        self.manager.player_interface.server_manager.send_team(builds)
+
+    def display_team(self, hero):
+        self.__hero_text.insert(END, f'{hero.full_name}\nhp {hero.max_health}; dmg {hero.damage}; '
+                                     f'agl {hero.agility}; mana {hero.max_mana};\n\n')
 
     @property
     def manager(self):

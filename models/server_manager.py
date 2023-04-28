@@ -37,8 +37,37 @@ class ServerManager(DogPlayerInterface):
     def receive_start(self, start_status):
         message = start_status.get_message()
         print(message)
-        if start_status.get_code == '2':
+        if start_status.get_code() == '2':
             self.player_interface.window_manager.swap_to_hero_creator()
+
+    def attack(self):
+        move = {}
+        self.dog_server_interface.send_move(move)
+
+    def send_team(self, team: dict):
+        move = {'function': 'send_team', 'team': team, 'match_status': 'next'}
+        self.dog_server_interface.send_move(move)
+        if self.player_interface.battle_manager.enemy_team:
+            self.player_interface.window_manager.swap_to_battle()
+
+    def receive_move(self, a_move):
+        if a_move['function'] == 'send_team':
+            self.receive_team(move=a_move)
+        elif a_move['function'] == 'attack':
+            self.receive_attack(move=a_move)
+
+    def receive_team(self, move):
+        print(move)
+        heroes = {}
+        for hero_index in range(3):
+            hero = self.player_interface.window_manager.hero_creator.create_hero(move['team'][hero_index])
+            heroes[f'Hero {hero_index + 1}'] = hero
+        self.player_interface.battle_manager.enemy_team = heroes
+        if self.player_interface.battle_manager.team:
+            self.player_interface.window_manager.swap_to_battle()
+
+    def receive_attack(self, move):
+        pass
 
     @property
     def player_interface(self):
