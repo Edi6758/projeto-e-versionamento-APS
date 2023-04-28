@@ -18,120 +18,6 @@ class Hero:
         self.__special_attack = skills['special attack']
         self.__element = build[2]
 
-    # Getters
-    @property
-    def full_name(self):
-        return self.__full_name
-
-    @property
-    def damage(self):
-        return self.__damage
-
-    @property
-    def max_health(self):
-        return self.__max_health
-
-    @property
-    def health(self):
-        return self.__health
-
-    @property
-    def agility(self):
-        return self.__agility
-
-    @property
-    def team(self):
-        return self.__team
-
-    @property
-    def max_mana(self):
-        return self.__max_mana
-
-    @property
-    def mana(self):
-        return self.__mana
-
-    @property
-    def build(self):
-        return self.__build
-
-    @property
-    def alive(self):
-        return self.__alive
-
-    @property
-    def basic_attack(self):
-        return self.__basic_attack
-
-    @property
-    def power_attack(self):
-        return self.__power_attack
-
-    @property
-    def special_attack(self):
-        return self.__special_attack
-
-    @property
-    def element(self):
-        return self.__element
-
-    # Setters
-    @full_name.setter
-    def full_name(self, full_name):
-        self.__full_name = full_name
-
-    @damage.setter
-    def damage(self, damage):
-        self.__damage = damage
-
-    @max_health.setter
-    def max_health(self, max_health):
-        self.__max_health = max_health
-
-    @health.setter
-    def health(self, health):
-        self.__health = health
-
-    @agility.setter
-    def agility(self, agility):
-        self.__agility = agility
-
-    @team.setter
-    def team(self, team):
-        self.__team = team
-
-    @max_mana.setter
-    def max_mana(self, max_mana):
-        self.__max_mana = max_mana
-
-    @mana.setter
-    def mana(self, mana):
-        self.__mana = mana
-
-    @build.setter
-    def build(self, build):
-        self.__build = build
-
-    @alive.setter
-    def alive(self, alive):
-        self.__alive = alive
-
-    @basic_attack.setter
-    def basic_attack(self, basic_attack):
-        self.__basic_attack = basic_attack
-
-    @power_attack.setter
-    def power_attack(self, power_attack):
-        self.__power_attack = power_attack
-
-    @special_attack.setter
-    def special_attack(self, special_attack):
-        self.__special_attack = special_attack
-
-    @element.setter
-    def element(self, element):
-        self.__element = element
-
     def element_multiplier(self, defender: str):
         strong, weak, critical, null, same = 1.4, .7, 2.0, .5, .9
         element_combinations = {
@@ -191,3 +77,115 @@ class Hero:
     def __repr__(self):
         return f"{self.build} Agility {self.agility} Health {self.max_health} " \
                f"Damage {self.damage} Mana {self.max_mana}"
+
+    @property
+    def full_name(self):
+        return self.__full_name
+
+    @property
+    def damage(self):
+        return self.__damage
+
+    @property
+    def max_health(self):
+        return self.__max_health
+
+    @property
+    def health(self):
+        return self.__health
+
+    @property
+    def agility(self):
+        return self.__agility
+
+    @property
+    def team(self):
+        return self.__team
+
+    @property
+    def max_mana(self):
+        return self.__max_mana
+
+    @property
+    def mana(self):
+        return self.__mana
+
+    @property
+    def build(self):
+        return self.__build
+
+    @property
+    def alive(self):
+        return self.__alive
+
+    @property
+    def basic_attack(self):
+        return self.__basic_attack
+
+    @property
+    def power_attack(self):
+        return self.__power_attack
+
+    @property
+    def special_attack(self):
+        return self.__special_attack
+
+    @property
+    def element(self):
+        return self.__element
+
+    @full_name.setter
+    def full_name(self, full_name):
+        self.__full_name = full_name
+
+    @damage.setter
+    def damage(self, damage):
+        self.__damage = damage
+
+    @max_health.setter
+    def max_health(self, max_health):
+        self.__max_health = max_health
+
+    @health.setter
+    def health(self, health):
+        self.__health = health
+
+    @agility.setter
+    def agility(self, agility):
+        self.__agility = agility
+
+    @team.setter
+    def team(self, team):
+        self.__team = team
+
+    @max_mana.setter
+    def max_mana(self, max_mana):
+        self.__max_mana = max_mana
+
+    @mana.setter
+    def mana(self, mana):
+        self.__mana = mana
+
+    @build.setter
+    def build(self, build):
+        self.__build = build
+
+    @alive.setter
+    def alive(self, alive):
+        self.__alive = alive
+
+    @basic_attack.setter
+    def basic_attack(self, basic_attack):
+        self.__basic_attack = basic_attack
+
+    @power_attack.setter
+    def power_attack(self, power_attack):
+        self.__power_attack = power_attack
+
+    @special_attack.setter
+    def special_attack(self, special_attack):
+        self.__special_attack = special_attack
+
+    @element.setter
+    def element(self, element):
+        self.__element = element

@@ -52,10 +52,10 @@ class ServerManager(DogPlayerInterface):
             self.player_interface.window_manager.swap_to_battle()
 
     def receive_move(self, a_move):
-        if a_move['function'] == 'send_team':
-            self.receive_team(move=a_move)
-        elif a_move['function'] == 'attack':
+        if a_move['function'] == 'attack':
             self.receive_attack(move=a_move)
+        elif a_move['function'] == 'send_team':
+            self.receive_team(move=a_move)
 
     def receive_team(self, move):
         print(move)
