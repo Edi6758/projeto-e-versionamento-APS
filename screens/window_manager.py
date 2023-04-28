@@ -17,7 +17,6 @@ class WindowManager:
         self.graphics_manager.load()
         self.__hero_creator = HeroCreatorScreen(self, hero_data_assets=self.graphics_manager.heroes_data_assets)
         self.__battle = BattleScreen(manager=self)
-        self.__main_menu.open()
 
     def popup(self, message: str):
         messagebox.showinfo(message=message)
@@ -26,12 +25,13 @@ class WindowManager:
         return simpledialog.askstring(title=title, prompt=message)
 
     def swap_to_hero_creator(self):
-        self.main_menu.frame.grid_remove()
+        for frame in self.window.winfo_children():
+            frame.destroy()
         self.hero_creator.open()
 
     def swap_to_battle(self):
-        for child in self.hero_creator.frame.winfo_children():
-            child.grid_forget()
+        for frame in self.window.winfo_children():
+            frame.destroy()
         self.battle.open()
 
     @property

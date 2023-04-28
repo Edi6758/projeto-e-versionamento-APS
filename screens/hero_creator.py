@@ -13,9 +13,10 @@ class HeroCreatorScreen:
         self.__element_vars = []
         self.__hero_text = None
         self.__stats = hero_data_assets
-        self.__frame = Frame(self.manager.window)
+        self.__frame = None
 
     def open(self):
+        self.frame = Frame(self.manager.window)
         self.manager.window.geometry("700x400")
         self.manager.window.resizable(False, False)
         self.frame.grid(row=0, column=0, sticky="nsew")

@@ -13,6 +13,7 @@ class ServerManager(DogPlayerInterface):
         self.player_name = self.player_interface.window_manager.input_popup(title='Player Identification',
                                                                             message='Como você se chama?')
         print(self.trying_connection())
+        self.player_interface.window_manager.main_menu.open()
 
     def trying_connection(self):
         message = self.dog_server_interface.initialize(self.player_name, self)

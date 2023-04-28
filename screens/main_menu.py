@@ -4,15 +4,19 @@ from tkinter import Canvas, W, Button, Frame
 class MainMenuScreen:
     def __init__(self, manager):
         self.__manager = manager
-        self.__frame = Frame(self.manager.window)
+        self.__frame = None
 
     def open(self):
+        self.frame = Frame(self.manager.window)
         self.frame.grid(row=0, column=0, sticky="nsew")
         self.manager.window.title('Battle Element')
         self.manager.window.geometry("500x250")
         self.manager.window.overrideredirect(False)
         self.manager.window.resizable(False, False)
         self.frame.tkraise()
+        self.create_widgets()
+
+    def create_widgets(self):
         self.title()
         self.button()
 
