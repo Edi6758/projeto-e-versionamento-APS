@@ -18,7 +18,7 @@ class Hero:
         self.__special_attack = skills['special attack']
         self.__element = build[2]
 
-    def element_multiplier(self, defender: str):
+    def element_multiplier(self, defender_element: str):
         strong, weak, critical, null, same = 1.4, .7, 2.0, .5, .9
         element_combinations = {
             'Flame': {'Sea': null, 'Terra': strong, 'Electric': weak, 'Nature': critical, 'Flame': same},
@@ -27,7 +27,7 @@ class Hero:
             'Electric': {'Sea': critical, 'Terra': null, 'Flame': strong, 'Nature': weak, 'Electric': same},
             'Nature': {'Sea': weak, 'Terra': critical, 'Electric': strong, 'Flame': null, 'Nature': same},
         }
-        return element_combinations[self.element][defender]
+        return element_combinations[self.element][defender_element]
 
     def attack(self, skill_dmg, target, elemental: bool):
         if elemental:

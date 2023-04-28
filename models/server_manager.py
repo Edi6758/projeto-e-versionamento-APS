@@ -41,8 +41,9 @@ class ServerManager(DogPlayerInterface):
         if start_status.get_code() == '2':
             self.player_interface.window_manager.swap_to_hero_creator()
 
-    def attack(self):
-        move = {}
+    def send_attack(self, attack: tuple):
+        match_status = 'next'
+        move = {'dmg': attack[0], 'is_elemental': attack[1], 'function': 'attack', 'match_status': match_status}
         self.dog_server_interface.send_move(move)
 
     def send_team(self, team: dict):
