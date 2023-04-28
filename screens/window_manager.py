@@ -34,6 +34,11 @@ class WindowManager:
             frame.destroy()
         self.battle.open()
 
+    def swap_to_main_menu(self):
+        for frame in self.window.winfo_children():
+            frame.destroy()
+        self.main_menu.open()
+
     @property
     def player_interface(self):
         return self.__player_interface

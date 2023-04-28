@@ -71,6 +71,11 @@ class ServerManager(DogPlayerInterface):
     def receive_attack(self, move):
         pass
 
+    def receive_withdrawal_notification(self):
+        self.player_interface.window_manager.popup('O oponente abandonou a partida')
+        self.player_interface
+        self.player_interface.window_manager.swap_to_main_menu()
+
     @property
     def player_interface(self):
         return self.__player_interface
