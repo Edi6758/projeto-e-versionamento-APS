@@ -42,7 +42,6 @@ class Hero:
             return False
 
     def choose_skill(self):
-        self.refresh_cooldown()
         elemental = False
         if not self.special_attack['cd'] and self.mana >= self.special_attack['man_cost']:
             skill_dmg = self.special_attack['dmg']
