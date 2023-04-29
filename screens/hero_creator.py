@@ -25,26 +25,26 @@ class HeroCreatorScreen:
 
     def create_widgets(self):
         for i in range(3):
-            race_var = StringVar(value=list(self.__stats['stats']['races'].keys())[0])
-            class_var = StringVar(value=list(self.__stats['stats']['classes'].keys())[0])
-            element_var = StringVar(value=list(self.__stats['stats']['elements'].keys())[0])
+            race_var = StringVar(value=list(self.stats['stats']['races'].keys())[0])
+            class_var = StringVar(value=list(self.stats['stats']['classes'].keys())[0])
+            element_var = StringVar(value=list(self.stats['stats']['elements'].keys())[0])
 
             self.__race_vars.append(race_var)
             self.__class_vars.append(class_var)
             self.__element_vars.append(element_var)
 
             race_combobox = Combobox(self.frame, textvariable=race_var,
-                                     values=list(self.__stats['stats']['races'].keys()), state="readonly")
+                                     values=list(self.stats['stats']['races'].keys()), state="readonly")
             race_combobox.grid(row=i, column=1)
             race_combobox.current(0)
 
             class_combobox = Combobox(self.frame, textvariable=class_var,
-                                      values=list(self.__stats['stats']['classes'].keys()), state="readonly")
+                                      values=list(self.stats['stats']['classes'].keys()), state="readonly")
             class_combobox.grid(row=i, column=2)
             class_combobox.current(0)
 
             element_combobox = Combobox(self.frame, textvariable=element_var,
-                                        values=list(self.__stats['stats']['elements'].keys()), state="readonly")
+                                        values=list(self.stats['stats']['elements'].keys()), state="readonly")
             element_combobox.grid(row=i, column=3)
             element_combobox.current(0)
 
@@ -89,11 +89,11 @@ class HeroCreatorScreen:
             builds.append(build)
             hero = self.create_hero(build)
             heroes[f'Hero {i + 1}'] = hero
-            self.display_team(hero=hero)
+            self.add_display_hero(hero=hero)
         self.manager.player_interface.battle_manager.team = heroes
         self.manager.player_interface.server_manager.send_team(builds)
 
-    def display_team(self, hero):
+    def add_display_hero(self, hero):
         self.__hero_text.insert(END, f'{hero.full_name}\nhp {hero.max_health}; dmg {hero.damage}; '
                                      f'agl {hero.agility}; mana {hero.max_mana};\n\n')
 
@@ -120,6 +120,10 @@ class HeroCreatorScreen:
     @property
     def hero_text(self):
         return self.__hero_text
+
+    @property
+    def stats(self):
+        return self.__stats
 
     @property
     def frame(self):

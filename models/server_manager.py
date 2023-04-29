@@ -1,5 +1,6 @@
 from dog.dog_interface import DogPlayerInterface
 from dog.dog_actor import DogActor
+from time import sleep
 
 
 class ServerManager(DogPlayerInterface):
@@ -8,6 +9,7 @@ class ServerManager(DogPlayerInterface):
         self.__dog_server_interface = DogActor()
         self.__player_interface = player_interface
         self.__player_name = ''
+        self.starter = 'not starter'
 
     def connect_to_server(self):
         self.player_name = self.player_interface.window_manager.input_popup(title='Player Identification',
@@ -26,23 +28,28 @@ class ServerManager(DogPlayerInterface):
     def start_match(self):
         start_status = self.dog_server_interface.start_match(2)
         message = start_status.get_message()
-        print(message)
         code = start_status.get_code()
+        print(message)
         print(code)
         if code == '2':
+            self.starter = 'esse é o starter'
+            print(self.starter)
             self.player_interface.window_manager.swap_to_hero_creator()
         elif code == '1':
             print('tentando novamente em 3 segundos')
             self.player_interface.window_manager.window.after(3000, self.start_match)
 
     def receive_start(self, start_status):
+        code = start_status.get_code()
         message = start_status.get_message()
         print(message)
-        if start_status.get_code() == '2':
+        print(code)
+        if code == '2':
+            print(self.starter)
             self.player_interface.window_manager.swap_to_hero_creator()
 
     def send_attack(self, move: tuple):
-        match_status = 'next'
+        match_status = 'next'  # reforma necessaria
         attack = {'skill_dmg': move[0], 'is_elemental': move[1]}
         move = {'attack': attack, 'rematch': move[2], 'function': 'attack', 'match_status': match_status}
         self.dog_server_interface.send_move(move)
@@ -51,7 +58,7 @@ class ServerManager(DogPlayerInterface):
         move = {'function': 'send_team', 'team': team, 'match_status': 'next'}
         self.dog_server_interface.send_move(move)
         if self.player_interface.battle_manager.enemy_team:
-            self.player_interface.window_manager.swap_to_battle()
+            self.player_interface.battle_manager.prepare_battle()
 
     def receive_move(self, a_move):
         if a_move['function'] == 'attack':
@@ -67,12 +74,13 @@ class ServerManager(DogPlayerInterface):
             heroes[f'Hero {hero_index + 1}'] = hero
         self.player_interface.battle_manager.enemy_team = heroes
         if self.player_interface.battle_manager.team:
-            self.player_interface.window_manager.swap_to_battle()
+            self.player_interface.battle_manager.prepare_battle()
 
     def receive_attack(self, move):
-        pass
+        print(move)
 
     def receive_withdrawal_notification(self):
+        self.starter = 'nao starter'
         self.player_interface.window_manager.popup('O oponente abandonou a partida')
         self.player_interface.window_manager.swap_to_main_menu()
         self.player_interface.postmatch_cleanup()

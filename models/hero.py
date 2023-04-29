@@ -41,7 +41,7 @@ class Hero:
             target.health -= skill_dmg
             return False
 
-    def choose_skill(self):
+    def auto_skill_selection(self):
         elemental = False
         if not self.special_attack['cd'] and self.mana >= self.special_attack['man_cost']:
             skill_dmg = self.special_attack['dmg']

@@ -7,8 +7,11 @@ class BattleManager():
         self.__team = {}
         self.__enemy_team = {}
 
+    def prepare_battle(self):
+        self.player_interface.window_manager.swap_to_battle()
+
     @property
-    def manager(self):
+    def player_interface(self):
         return self.__player_interface
 
     @property

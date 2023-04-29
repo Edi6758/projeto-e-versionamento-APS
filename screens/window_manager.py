@@ -25,19 +25,20 @@ class WindowManager:
         return simpledialog.askstring(title=title, prompt=message)
 
     def swap_to_hero_creator(self):
-        for frame in self.window.winfo_children():
-            frame.destroy()
+        self.clean_screen()
         self.hero_creator.open()
 
     def swap_to_battle(self):
-        for frame in self.window.winfo_children():
-            frame.destroy()
+        self.clean_screen()
         self.battle.open()
 
     def swap_to_main_menu(self):
+        self.clean_screen()
+        self.main_menu.open()
+
+    def clean_screen(self):
         for frame in self.window.winfo_children():
             frame.destroy()
-        self.main_menu.open()
 
     @property
     def player_interface(self):
