@@ -14,6 +14,7 @@ class PlayerInterface:
 
     def postmatch_cleanup(self):
         self.battle_manager = BattleManager(player_interface=self)
+        self.window_manager.hero_creator.hero_text = ''
 
     @property
     def window_manager(self):

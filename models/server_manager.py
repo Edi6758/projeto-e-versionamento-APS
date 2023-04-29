@@ -41,9 +41,10 @@ class ServerManager(DogPlayerInterface):
         if start_status.get_code() == '2':
             self.player_interface.window_manager.swap_to_hero_creator()
 
-    def send_attack(self, attack: tuple):
+    def send_attack(self, move: tuple):
         match_status = 'next'
-        move = {'dmg': attack[0], 'is_elemental': attack[1], 'function': 'attack', 'match_status': match_status}
+        attack = {'skill_dmg': move[0], 'is_elemental': move[1]}
+        move = {'attack': attack, 'rematch': move[2], 'function': 'attack', 'match_status': match_status}
         self.dog_server_interface.send_move(move)
 
     def send_team(self, team: dict):
@@ -73,8 +74,8 @@ class ServerManager(DogPlayerInterface):
 
     def receive_withdrawal_notification(self):
         self.player_interface.window_manager.popup('O oponente abandonou a partida')
-        self.player_interface
         self.player_interface.window_manager.swap_to_main_menu()
+        self.player_interface.postmatch_cleanup()
 
     @property
     def player_interface(self):
