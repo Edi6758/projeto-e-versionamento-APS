@@ -1,7 +1,7 @@
 from ttkthemes import ThemedTk
 from tkinter import messagebox, simpledialog
 from screens.hero_creator import HeroCreatorScreen
-from screens.battle_screen import BattleScreen
+from screens.battle import BattleScreen
 from screens.main_menu import MainMenuScreen
 from models.graphics_manager import GraphicsManager
 
@@ -14,8 +14,7 @@ class WindowManager:
         self.window.overrideredirect(True)
         self.__graphics_manager = GraphicsManager(manager=self)
         self.__main_menu = MainMenuScreen(manager=self)
-        self.graphics_manager.load()
-        self.__hero_creator = HeroCreatorScreen(self, hero_data_assets=self.graphics_manager.heroes_data_assets)
+        self.__hero_creator = HeroCreatorScreen(self)
         self.__battle = BattleScreen(manager=self)
 
     def popup(self, message: str):

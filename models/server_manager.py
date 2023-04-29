@@ -70,8 +70,8 @@ class ServerManager(DogPlayerInterface):
         print(move)
         heroes = {}
         for hero_index in range(3):
-            hero = self.player_interface.window_manager.hero_creator.create_hero(move['team'][hero_index])
-            heroes[f'Hero {hero_index + 1}'] = hero
+            heroes = self.player_interface.battle_manager.hero_manager.create_heroes(move['team'][hero_index])
+            heroes = {f'{hero_index}': hero for hero, hero_index in enumerate(heroes)}
         self.player_interface.battle_manager.enemy_team = heroes
         if self.player_interface.battle_manager.team:
             self.player_interface.battle_manager.prepare_battle()
