@@ -13,12 +13,19 @@ class HeroManager:
     def create_heroes(self, builds: list):
         heroes = []
         for build in builds:
-            title = f'{choice(self.stats["names"][build[0]])}, ' \
-                    f'{choice(self.stats["titles"][build[2]][build[1]])}'
+            print('-------------------------------------')
+            print(builds)
+            print(build)
+            print('-------------------------------------')
+
+            print(self.stats["titles"])
+
             race, classe, element = \
                 self.stats['stats']['races'][build[0]], \
                 self.stats['stats']['classes'][build[1]], \
                 self.stats['stats']['elements'][build[2]]
+            title = f'{choice(self.stats["names"][build[0]])}, ' \
+                    f'{choice(self.stats["titles"][build[2]][build[1]])}'
             agility = round(race['agl'] * classe['agl'] * element['agl'])
             damage = round(race['dmg'] * classe['dmg'] * element['dmg'])
             health = round(race['hp'] * classe['hp'] * element['hp'])

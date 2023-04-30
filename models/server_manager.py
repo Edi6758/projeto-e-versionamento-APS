@@ -54,8 +54,8 @@ class ServerManager(DogPlayerInterface):
         move = {'attack': attack, 'rematch': move[2], 'function': 'attack', 'match_status': match_status}
         self.dog_server_interface.send_move(move)
 
-    def send_team(self, team: dict):
-        move = {'function': 'send_team', 'team': team, 'match_status': 'next'}
+    def send_team(self, builds: list):
+        move = {'function': 'send_team', 'team': builds, 'match_status': 'next'}
         self.dog_server_interface.send_move(move)
         if self.player_interface.battle_manager.enemy_team:
             self.player_interface.battle_manager.prepare_battle()
@@ -68,11 +68,8 @@ class ServerManager(DogPlayerInterface):
 
     def receive_team(self, move):
         print(move)
-        heroes = {}
-        for hero_index in range(3):
-            heroes = self.player_interface.battle_manager.hero_manager.create_heroes(move['team'][hero_index])
-            heroes = {f'{hero_index}': hero for hero, hero_index in enumerate(heroes)}
-        self.player_interface.battle_manager.enemy_team = heroes
+        heroes = self.player_interface.battle_manager.hero_manager.create_heroes(builds=move['team'])
+        self.player_interface.battle_manager.enemy_team = {f'{index}': hero for hero, index in enumerate(heroes)}
         if self.player_interface.battle_manager.team:
             self.player_interface.battle_manager.prepare_battle()
 
