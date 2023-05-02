@@ -1,6 +1,5 @@
 from dog.dog_interface import DogPlayerInterface
 from dog.dog_actor import DogActor
-from time import sleep
 
 
 class ServerManager(DogPlayerInterface):
